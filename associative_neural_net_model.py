@@ -145,9 +145,9 @@ def run_simuation(pdfs, mus, sigmas, experiment):
                     if pr_f > 0 and pr_f < 1 and pr_b >0 and pr_b < 1:
                         break
                 hopnet.store_weights(A[j], B[j], mus[-1], mus[-1], pr_f, pr_b, nodes_store[j])
-            elif experiment == 'uncorr_test':
+            elif experiment == 'stochastic_learning':
                 hopnet.store_weights(A[j], B[j], mus[-1], mus[-1], mus[-1], mus[-1], nodes_store[j])
-            elif experiment == 'corr_test':
+            elif experiment == 'all_weights_learning':
                 mu_test = 1
                 hopnet.store_weights(A[j], B[j], mu_test, mu_test, mu_test, mu_test, nodes_store[j], mut=mus[-1], mode='test')
                
@@ -183,9 +183,9 @@ def run_simuation(pdfs, mus, sigmas, experiment):
                     if pr_f > 0 and pr_f < 1 and pr_b >0 and pr_b < 1:
                         break
                 hopnet.store_weights(A[j], B[j], mus[-1], mus[-1], pr_f, pr_b, nodes_store[j])
-            elif experiment == 'uncorr_test':
+            elif experiment == 'stochastic_learning':
                 hopnet.store_weights(A[j], B[j], mus[-1], mus[-1], mus[-1], mus[-1], nodes_store[j])
-            elif experiment == 'corr_test':
+            elif experiment == 'all_weights_learning':
                 mu_test = 1
                 hopnet.store_weights(A[j], B[j], mu_test, mu_test, mu_test, mu_test, nodes_store[j], mut=mus[-1], mode='test')
 
@@ -299,7 +299,7 @@ def run_optimizer_on_subject(sub, exp=None):
         if not mu_t and not sigma_t:
             experiment = 'no_test'
         elif mu_t and not sigma_t:
-            experiment = 'uncorr_test'
+            experiment = 'stochastic_learning'
         elif mu_t and sigma_t:
             experiment = 'asymm_test'
         if exp:
@@ -310,7 +310,7 @@ def run_optimizer_on_subject(sub, exp=None):
         if experiment=='no_test': 
             mus = [mu, mu, mu]
             sigmas = [sigma, sigma, sigma]
-        elif experiment == 'uncorr_test' or experiment == 'corr_test':
+        elif experiment == 'stochastic_learning' or experiment == 'all_weights_learning':
             mus = [mu, mu, mu, mu_t]
             sigmas = [sigma, sigma, sigma]
         elif experiment == 'asymm_test':
@@ -332,7 +332,7 @@ def run_optimizer_on_subject(sub, exp=None):
         for k in range(nsim):
             if k%10 == 0:
                 print(k)
-            if experiment == 'uncorr_test' or experiment == 'corr_test':
+            if experiment == 'stochastic_learning' or experiment == 'all_weights_learning':
                 pdfs = [get_pdf(mus[i], sigmas[i], rho) for i in range(len(mus)-1)]
             else:
                 pdfs = [get_pdf(mus[i], sigmas[i], rho) for i in range(len(mus))]
@@ -373,7 +373,7 @@ if __name__ == "__main__":
     parser.add_argument('--rho', dest='rho', default=0.523)
     parser.add_argument('--mut', dest='mut', type=float, default=0.3)
     parser.add_argument('--sigmat', dest='sigmat', type=float,  default=None)
-    parser.add_argument('--experiment', dest='experiment', type=str,  default='corr_test')
+    parser.add_argument('--experiment', dest='experiment', type=str,  default='all_weights_learning')
     parser.add_argument('--num', dest='num', type=str, default=1)
 
     args = parser.parse_args()

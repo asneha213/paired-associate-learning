@@ -23,12 +23,10 @@ if __name__ == "__main__":
         run = run_optimizer_on_subject(sub, experiment)
         if experiment == 'no_test':
             res = minimize(run, [0.5, 0.25, 0.9], method='nelder-mead')
-        elif experiment == 'corr_test':
+        elif experiment == 'all_weights_learning':
             res = minimize(run, [0.5, 0.25, 0.5, 0.1], method='nelder-mead')
-        elif experiment == 'uncorr_test':
+        elif experiment == 'stochastic_learning':
             res = minimize(run, [0.5, 0.25, 0.5, 0.1], method='nelder-mead')
-        elif experiment == 'corr_test_0':
-            res = minimize(run, [0.5, 0.3, 0.9], method='nelder-mead')
 
         details_list.append(res)
 

@@ -34,7 +34,7 @@ notest_data[:,3] = 1 - notest_data[:,3]
 notest_times = np.array(notest_times)
 notest_params = np.array(notest_params)
 
-f1 = open('uncorr_test_stats.pkl', 'rb')
+f1 = open('stochastic_learning_stats.pkl', 'rb')
 uncorrtest = pickle.load(f1)
 uncorrtest_data = []
 uncorrtest_times = []
@@ -52,7 +52,7 @@ uncorrtest_data[:,3] = 1 - uncorrtest_data[:,3]
 uncorrtest_times = np.array(uncorrtest_times)
 uncorrtest_params = np.array(uncorrtest_params)
 
-f1 = open('corr_test_stats.pkl', 'rb')
+f1 = open('all_weights_learning_stats.pkl', 'rb')
 corrtest = pickle.load(f1)
 corrtest_data = []
 corrtest_times = []
