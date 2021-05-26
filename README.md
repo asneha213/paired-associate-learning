@@ -6,5 +6,5 @@ Rizzuto, D. S. & Kahana, M. J. (2001), 'An Autoassociative Neural Network Model 
 
 ## Data
 
-The raw data used for the experiments is taken from [here](http://memory.psych.upenn.edu/files/pubs/Kaha02.data.tgz).
+The raw data used for the simulations is taken from [here](http://memory.psych.upenn.edu/files/pubs/Kaha02.data.tgz).
 
